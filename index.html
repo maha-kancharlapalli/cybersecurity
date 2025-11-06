@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Hub - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e6ed;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: #e0e6ed;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        nav a:hover::before {
+            left: 100%;
+        }
+
+        nav a:hover {
+            background: rgba(0, 217, 255, 0.1);
+            color: #00d9ff;
+            transform: translateY(-2px);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 3px solid #00d9ff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.05) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #00d9ff 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .content-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 217, 255, 0.2);
+            border-color: rgba(0, 217, 255, 0.4);
+        }
+
+        h1 {
+            color: #00d9ff;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        h2 {
+            color: #7c3aed;
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            text-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+        }
+
+        h3 {
+            color: #a78bfa;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+
+        ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        ul li {
+            padding: 0.75rem 0 0.75rem 2rem;
+            position: relative;
+            color: #cbd5e1;
+        }
+
+        ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #00d9ff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Blockquote */
+        blockquote {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(0, 217, 255, 0.2) 100%);
+            border-left: 5px solid #7c3aed;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            border-radius: 0 12px 12px 0;
+            color: #e0e6ed;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .two-column img {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .two-column img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        th {
+            background: linear-gradient(135deg, #7c3aed 0%, #00d9ff 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+
+        td {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            color: #cbd5e1;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        /* Special Text Styles */
+        .underline {
+            color: #00d9ff;
+            text-decoration: underline;
+            text-decoration-color: rgba(0, 217, 255, 0.5);
+            text-underline-offset: 3px;
+        }
+
+        strong {
+            color: #00d9ff;
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 1rem;
+            }
+        }
+
+        /* Page Indicator */
+        .page-title {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(0, 217, 255, 0.2));
+            border-radius: 12px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav align = "center">
+        <a href="#home">🏠 Home</a>
+        <a href="#core">🔐 Core Concepts</a>
+        <a href="#factors">👤 Authentication & Human Factors</a>
+        <a href="#threats">⚠️ Cyber Threats & Protection</a>
+    </nav>
+
+    <header>
+        <h1>🛡️ Cybersecurity Hub</h1>
+        <p style="font-size: 1.2rem; color: #a78bfa;">The Key to Staying Safe Online</p>
+    </header>
+
+    <main id="home">
+        <div class="content-card">
+            <p>Cybersecurity is about protecting people, information, and systems in the digital world. From social engineering and phishing to malware and weak passwords, online threats are everywhere. Understanding these risks and learning how to protect yourself is essential in today's technology-driven world.</p>
+            
+            <p>This website is designed to help you:</p>
+            <ul>
+                <li>Learn the <strong>core principles of cybersecurity</strong>, like the CIA Triad and the states of data</li>
+                <li>Understand <strong>human factors</strong> and how attackers exploit them</li>
+                <li>Explore common <strong>cyber threats</strong> and ways to protect yourself</li>
+                <li>Practice safe online behavior through tips, examples, and activities</li>
+            </ul>
+
+            <blockquote>"Security is not a product, but a process." - Bruce Schneier</blockquote>
+        </div>
+
+        <div class="page-title" id="core">
+            <h1>🔐 Core Concepts</h1>
+        </div>
+
+        <div class="content-card">
+            <div class="two-column">
+                <div>
+                    <h2>The CIA Triad</h2>
+                    <h3>The CIA Triad is the foundation of cybersecurity. Every security strategy is designed to protect at least one of these principles. It represents the goal of network security. Cybersecurity aims to maintain...</h3>
+                    <ul>
+                        <li><strong>Confidentiality</strong> — protecting information from unauthorized access</li>
+                        <li><strong>Integrity</strong> — ensuring information is accurate and intact</li>
+                        <li><strong>Availability</strong> — ensuring authorized users can access information</li>
+                    </ul>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <img src="assets/cia.webp" alt="CIA Triad" style="max-width: 400px;">
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #94a3b8;">Source: idstrong.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 style="text-align: center;">States of Data</h2>
+            <h3 style="text-align: center; color: #94a3b8;">Data exists in three different states, and each one of them must be protected differently.</h3>
+            
+            <table>
+                <tr>
+                    <th>📦 Data at Rest</th>
+                    <th>🚀 Data in Transit</th>
+                    <th>⚡ Data in Use</th>
+                </tr>
+                <tr>
+                    <td>Typically files, databases, or other information kept on hard drives, USB drives, solid-state memory, DVDs, etc.</td>
+                    <td>Data being transferred between systems, like file sharing on a LAN or sending information over the internet.</td>
+                    <td>Data actively being created, accessed, processed, or loaded into an application or system memory.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page-title" id="factors">
+            <h1>👤 Authentication & Human Factors</h1>
+        </div>
+
+        <div class="content-card">
+            <div class="two-column">
+                <div>
+                    <h2>Authentication</h2>
+                    <p>Authentication is the process of verifying the identity of a user or device. It is a critical component of cybersecurity, ensuring that only authorized individuals have access to sensitive information and systems.</p>
+                    <p>There are several methods of authentication, including:</p>
+                    <ul>
+                        <li>Password-based authentication</li>
+                        <li>Two-factor authentication (2FA), which uses another method of authentication to increase security. (Ex: Google Two Step Verification)</li>
+                        <li>Biometric authentication (e.g., fingerprint or facial recognition)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2>Password Best Practices</h2>
+                    <ul>
+                        <li>Use a mix of letters, numbers, and special characters/symbols</li>
+                        <li>Use at least 8 characters in your password</li>
+                        <li>Use BOTH lowercase AND uppercase letters</li>
+                        <li>DO NOT use personal information, reuse passwords, or use dictionary words</li>
+                        <li>Consider using a password manager to keep track of complex passwords</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 style="text-align: center;">Human Factors</h2>
+            <h3 style="text-align: center; color: #94a3b8;">Human behavior is one of the biggest vulnerabilities in any system. Authentication can fail if users make poor and unsafe choices. The following table shows common human mistakes and how to prevent them:</h3>
+            
+            <table>
+                <tr>
+                    <th>⚠️ Common Human Factor Risks</th>
+                    <th>✅ Improving Human Security</th>
+                </tr>
+                <tr>
+                    <td>Weak or reused passwords that attackers could easily guess</td>
+                    <td>To prevent this, use strong password habits and password managers to create complex, unique passwords for each account</td>
+                </tr>
+                <tr>
+                    <td>Falling for phishing emails designed to steal login credentials</td>
+                    <td>Instead, take phishing-awareness quizzes and simulations (like Google's phishing quiz) to practice spotting fake emails and links</td>
+                </tr>
+                <tr>
+                    <td>Social engineering attacks (attackers trick users into revealing information)</td>
+                    <td>Constantly verify the identity of individuals who request sensitive information. Do not share information without validation</td>
+                </tr>
+                <tr>
+                    <td>Unsafe habits, like writing down passwords or leaving devices unlocked</td>
+                    <td>To prevent this, store credentials safely and securely. It is strongly recommended to use a password manager</td>
+                </tr>
+                <tr>
+                    <td>Human error, such as clicking malicious links or downloading unverified attachments</td>
+                    <td>Human error can never be completely eliminated, but it can be mitigated through Multi-factor authentication (MFA). MFA adds an extra security layer, even when something goes wrong</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page-title" id="threats">
+            <h1>⚠️ Cyber Threats & Protection</h1>
+        </div>
+
+        <div class="content-card">
+            <h2>Cyber Threats</h2>
+            <h3>Cyber threats target systems, networks, and individuals in many different ways. Understanding these threats, and how to protect against them, is essential for safe practices.</h3>
+            
+            <h2 style="margin-top: 3rem;">Social Engineering</h2>
+            <p>Social engineering is attacks that trick or manipulate people who use technology. The goal of social engineering is to convince someone with higher level access to share information or provide access to an unauthorized person. Attacks rely on deception and manipulation to do so.</p>
+            <p>Humans are often the weakest link in security because they want to be helpful, avoid conflict, or sometimes they just make a mistake. Social engineering is used during the early stages of an attack.</p>
+            
+            <h3>Common techniques include:</h3>
+            <ul>
+                <li>Baiting</li>
+                <li>Shoulder Surfing</li>
+                <li>Piggybacking/Tailgating</li>
+                <li>Info written in workspace</li>
+                <li>Dumpster Diving</li>
+                <li>Pretexting - impersonation</li>
+                <li>Pretexting - wearing a uniform or using authority</li>
+                <li>Scareware (ex: <span class="underline">phishing</span>)</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>Phishing</h2>
+            <h3>Phishing is one of the most common cyber attack methods, used in most incidents. It's one of the top four biggest digital threats, and there's no code involved! It's all a lie.</h3>
+            
+            <h2 style="margin-top: 2rem;">What is Phishing?</h2>
+            <p>Phishing is the use of fraudulent emails or fake websites to deceive someone into giving confidential information. A typical phishing attack involves tricking the victim into thinking that an email is from a trusted organization. The email contains a link that appears legit. When clicked, it takes you to a website that looks like something it isn't. They can steal all the information you enter.</p>
+            
+            <h2 style="margin-top: 2rem;">A Few Special Types of Phishing Are...</h2>
+            <ul>
+                <li><span class="underline">Spear-phishing:</span> targeting at specific individuals or organizations</li>
+                <li><span class="underline">Whaling:</span> targeting high-level individuals</li>
+                <li><span class="underline">Smishing:</span> phishing through text messages</li>
+                <li><span class="underline">Vishing:</span> phishing through phone calls or voicemail</li>
+            </ul>
+            
+            <h2 style="margin-top: 2rem;">How to Spot a Phishing Email</h2>
+            <ul>
+                <li>Spelling errors or incorrect grammar</li>
+                <li>The sender's name and email address don't match</li>
+                <li>Hovering over a link shows a URL which doesn't match</li>
+                <li>Suspicious attachments</li>
+                <li>A strong sense of urgency</li>
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        // Add scroll animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+    </script>
+
+    <footer align = "center">
+        <p>All information from Cyber.org</p>
+        <p>Styled by Claude</p>
+    </footer>
+</body>
+</html>
